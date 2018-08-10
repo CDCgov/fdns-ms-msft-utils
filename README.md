@@ -1,13 +1,69 @@
-# fdns-ms-msft-utils
+# FDNS Microsoft Utilities Microservice
 This is the repository with the Microsoft Utilities microservice for parsing Microsoft formatted documents.
 
-This repository was created for use by CDC programs to collaborate on public health surveillance related projects in support of the CDC Surveillance Strategy.  Github is not hosted by the CDC, but is used by CDC and its partners to share information and collaborate on software.
+## Running locally
+Carefully read the following instructions for information on how to build, run, and test this microservice in your local environment.
 
-## ----- Start of respository specific READ ME -----
-### This repository specific READ ME instructions go here
+### Before you start
+You will need to have the following software installed to run this microservice in your local environment:
 
-Replace everything within this section demarcated with “-----“ with material appropriate to your repo that is useful to your developers and users like installation steps, user guide etc.
-## ----- End of respository specific READ ME -----
+- Docker, [Installation guides](https://docs.docker.com/install/)
+- Docker Compose, [Installation guides](https://docs.docker.com/compose/install/)
+- **Windows Users**: This project uses `Make`, please see [Cygwin](http://www.cygwin.com/) for running commands in this README
+
+### Build
+
+First, you'll need to build the image. You can build the image by running the following command:
+
+```
+make docker-build
+```
+
+### Run
+
+Once the image has been built, you can run it with the following command:
+
+```
+make docker-run
+```
+
+### Test
+
+To check if the microservice is running, open the following URL in your browser:
+
+[http://127.0.0.1:8086/](http://127.0.0.1:8086/)
+
+### Documentation
+
+To access the Swagger documentation, open the following URL in your browser:
+
+[http://127.0.0.1:8086/swagger-ui.html](http://127.0.0.1:8086/swagger-ui.html)
+
+### Docker Compose
+This microservice is designed to be used with other microservices. Please look at the [docker-compose](./docker-compose.yml) file for more information.
+
+### OAuth 2 Configuration
+
+This microservice is configurable so that it can be secured via an OAuth 2 provider.
+
+__Scopes__: This application uses the following scope: `msft-utils.*`
+
+Please see the following environment variables for configuring with your OAuth 2 provider:
+
+* `OAUTH2_ACCESS_TOKEN_URI`: This is the introspection URL of your provider, ex: `https://hydra:4444/oauth2/introspect`
+* `OAUTH2_PROTECTED_URIS`: This is a path for which routes are to be restricted, ex: `/api/1.0/**`
+* `OAUTH2_CLIENT_ID`: This is your OAuth 2 client id with the provider
+* `OAUTH2_CLIENT_SECRET`: This is your OAuth 2 client secret with the provider
+* `SSL_VERIFYING_DISABLE`: This is an option to disable SSL verification, you can disable this when testing locally but this should be set to `false` for all production systems
+
+### Miscellaneous Configurations
+
+Here are other various configurations and their purposes:
+
+* `MSFT_UTILS_PORT`: This is a configurable port the application is set to run on
+* `MSFT_UTILS_FLUENTD_HOST`: This is the host of your [Fluentd](https://www.fluentd.org/)
+* `MSFT_UTILS_FLUENTD_PORT`: This is the port of your [Fluentd](https://www.fluentd.org/)
+* `MSFT_UTILS_PROXY_HOSTNAME`: This is the hostname of your environment for use with Swagger UI, ex: `api.my.org`
   
 ## Public Domain
 This repository constitutes a work of the United States Government and is not
@@ -66,4 +122,3 @@ Please refer to [CDC's Template Repository](https://github.com/CDCgov/template)
 for more information about [contributing to this repository](https://github.com/CDCgov/template/blob/master/CONTRIBUTING.md),
 [public domain notices and disclaimers](https://github.com/CDCgov/template/blob/master/DISCLAIMER.md),
 and [code of conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
-
