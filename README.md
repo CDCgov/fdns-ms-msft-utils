@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CDCgov/fdns-ms-msft-utils.svg?branch=master)](https://travis-ci.org/CDCgov/fdns-ms-msft-utils)
+
 # FDNS Microsoft Utilities Microservice
 This is the repository with the Microsoft Utilities microservice for parsing Microsoft formatted documents.
 
