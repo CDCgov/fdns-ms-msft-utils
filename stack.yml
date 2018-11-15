@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  fluentd:
+    image: fluent/fluentd
+    ports:
+      - "24224:24224"
+  fdns-ms-msft-utils:
+    image: cdcgov/fdns-ms-msft-utils
+    ports:
+      - "8087:8087"
+    depends_on:
+      - fluentd
+    environment:
+      MSFT_UTILS_PORT: 8087
+      MSFT_UTILS_FLUENTD_HOST: fluentd
+      MSFT_UTILS_FLUENTD_PORT: 24224

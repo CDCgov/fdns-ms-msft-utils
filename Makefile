@@ -4,7 +4,7 @@ docker-build:
 		-t fdns-ms-msft-utils \
 		--network=fdns-ms-msft-utils_default \
 		--rm \
-		--build-arg MSFT_UTILS_PORT=8086 \
+		--build-arg MSFT_UTILS_PORT=8087 \
 		--build-arg MSFT_UTILS_FLUENTD_HOST=fluentd \
 		--build-arg MSFT_UTILS_FLUENTD_PORT=24224 \
 		--build-arg MSFT_UTILS_PROXY_HOSTNAME= \
@@ -20,7 +20,7 @@ docker-run: docker-start
 docker-start:
 	docker-compose up -d
 	docker run -d \
-		-p 8086:8086 \
+		-p 8087:8087 \
 		--network=fdns-ms-msft-utils_default \
 		--name=fdns-ms-msft-utils_main \
 		fdns-ms-msft-utils
