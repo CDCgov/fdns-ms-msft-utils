@@ -32,12 +32,20 @@ public class DOCXController {
 
 	private static final Logger logger = Logger.getLogger(DOCXController.class);
 
-	@RequestMapping(value = "extract", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
-	@ApiOperation(value = "Extract text from DOCX", notes = "Extract text from DOCX")
+	@RequestMapping(
+		value = "extract",
+		method = RequestMethod.POST,
+		produces = MediaType.TEXT_PLAIN_VALUE
+	)
+	@ApiOperation(
+		value = "Extract text from DOCX",
+		notes = "Extract text from DOCX"
+	)
 	@ResponseBody
-	public ResponseEntity<?> extractDataToJson(@ApiParam(value = "DOCX File") @RequestParam("file") MultipartFile file,
-						  @ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename) {
-		
+	public ResponseEntity<?> extractDataToJson(
+		@ApiParam(value = "DOCX File") @RequestParam("file") MultipartFile file,
+		@ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename
+	) {		
 		Map<String, Object> log = new HashMap<String, Object>();
 		log.put(MessageHelper.CONST_METHOD, MessageHelper.METHOD_EXTRACTDATA_DOCX);
 		log.put(MessageHelper.CONST_FILENAME, file.getOriginalFilename());

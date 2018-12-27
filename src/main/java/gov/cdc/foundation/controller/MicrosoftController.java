@@ -34,7 +34,6 @@ public class MicrosoftController {
 	@ResponseBody
 	public ResponseEntity<?> index() throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		
 		Map<String, Object> log = MessageHelper.initializeLog(MessageHelper.METHOD_INDEX);
 		
 		try {
