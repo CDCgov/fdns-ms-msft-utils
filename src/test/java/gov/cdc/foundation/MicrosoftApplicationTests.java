@@ -32,7 +32,7 @@ import com.google.gson.JsonParser;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = {
 		"logging.fluentd.host=fluentd", 
 		"logging.fluentd.port=24224", 
-		"proxy.hostname=localhost", 
+		"proxy.hostname=", 
 		"security.oauth2.resource.user-info-uri=", 
 		"security.oauth2.protected=",
 		"security.oauth2.client.client-id=",

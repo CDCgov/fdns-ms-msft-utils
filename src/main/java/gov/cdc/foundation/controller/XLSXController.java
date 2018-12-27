@@ -53,12 +53,20 @@ public class XLSXController {
 
 	private static final Logger logger = Logger.getLogger(XLSXController.class);
 
-	@RequestMapping(value = "sheets", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Get the list of sheets", notes = "Get the list of sheets of a XLSX file.")
+	@RequestMapping(
+		value = "sheets",
+		method = RequestMethod.POST,
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	@ApiOperation(
+		value = "Get the list of sheets",
+		notes = "Get the list of sheets of a XLSX file."
+	)
 	@ResponseBody
-	public ResponseEntity<?> getSheets(@ApiParam(value = "XLSX File") @RequestParam("file") MultipartFile file) throws IOException {
+	public ResponseEntity<?> getSheets(
+		@ApiParam(value = "XLSX File") @RequestParam("file") MultipartFile file
+	) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-
 		Map<String, Object> log = new HashMap<String, Object>();
 		log.put(MessageHelper.CONST_METHOD, MessageHelper.METHOD_GETSHEETS);
 		log.put(MessageHelper.CONST_FILENAME, file.getOriginalFilename());
@@ -96,17 +104,23 @@ public class XLSXController {
 		}
 	}
 
-	@RequestMapping(value = "extract/json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Extract data from XLSX to JSON", notes = "Extract data from XLSX to JSON")
+	@RequestMapping(
+		value = "extract/json",
+		method = RequestMethod.POST,
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	@ApiOperation(
+		value = "Extract data from XLSX to JSON",
+		notes = "Extract data from XLSX to JSON"
+	)
 	@ResponseBody
 	public ResponseEntity<?> extractDataToJson(@ApiParam(value = "XLSX File") @RequestParam("file") MultipartFile file,
-						  @ApiParam(value = "Sheet Name") @RequestParam(value = "sheetName", required = false) String sheetName,
-						  @ApiParam(value = "Sheet Range like A1:D1 or A2:A10") @RequestParam(value = "sheetRange") String sheetRange,
-						  @ApiParam(value = "Orientation", allowableValues = "portrait,landscape") @RequestParam(value = "orientation", required = false, defaultValue = "portrait") String orientation,
-						  @ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename) throws IOException {
-
+		@ApiParam(value = "Sheet Name") @RequestParam(value = "sheetName", required = false) String sheetName,
+		@ApiParam(value = "Sheet Range like A1:D1 or A2:A10") @RequestParam(value = "sheetRange") String sheetRange,
+		@ApiParam(value = "Orientation", allowableValues = "portrait,landscape") @RequestParam(value = "orientation", required = false, defaultValue = "portrait") String orientation,
+		@ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename
+	) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-
 		Map<String, Object> log = new HashMap<String, Object>();
 		log.put(MessageHelper.CONST_METHOD, MessageHelper.METHOD_EXTRACTDATA_XLSX);
 		log.put(MessageHelper.CONST_FILENAME, file.getOriginalFilename());
@@ -153,15 +167,22 @@ public class XLSXController {
 	}
 
 
-	@RequestMapping(value = "extract/csv", method = RequestMethod.POST, produces = "text/csv")
-	@ApiOperation(value = "Extract data from XLSX to CSV", notes = "Extract data from XLSX to CSV")
+	@RequestMapping(
+		value = "extract/csv",
+		method = RequestMethod.POST,
+		produces = "text/csv"
+	)
+	@ApiOperation(
+		value = "Extract data from XLSX to CSV",
+		notes = "Extract data from XLSX to CSV"
+	)
 	@ResponseBody
 	public ResponseEntity<?> extractDataToCsv(@ApiParam(value = "XLSX File") @RequestParam("file") MultipartFile file,
-						 @ApiParam(value = "Sheet Name") @RequestParam(value = "sheetName", required = false) String sheetName,
-						 @ApiParam(value = "Sheet Range like A1:D1 or A2:A10") @RequestParam(value = "sheetRange") String sheetRange,
-						 @ApiParam(value = "Orientation", allowableValues = "portrait,landscape") @RequestParam(value = "orientation", required = false, defaultValue = "portrait") String orientation,
-						 @ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename) throws IOException {
-
+			@ApiParam(value = "Sheet Name") @RequestParam(value = "sheetName", required = false) String sheetName,
+			@ApiParam(value = "Sheet Range like A1:D1 or A2:A10") @RequestParam(value = "sheetRange") String sheetRange,
+			@ApiParam(value = "Orientation", allowableValues = "portrait,landscape") @RequestParam(value = "orientation", required = false, defaultValue = "portrait") String orientation,
+			@ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename
+	) throws IOException {
 		Map<String, Object> log = new HashMap<String, Object>();
 		log.put(MessageHelper.CONST_METHOD, MessageHelper.METHOD_EXTRACTDATA_XLSX);
 		log.put(MessageHelper.CONST_FILENAME, file.getOriginalFilename());
@@ -215,12 +236,20 @@ public class XLSXController {
 		}
 	}
 
-	@RequestMapping(value = "from/csv", method = RequestMethod.POST, produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-	@ApiOperation(value = "Transform a CSV to XLSX", notes = "Transform a CSV to XLSX")
+	@RequestMapping(
+		value = "from/csv",
+		method = RequestMethod.POST,
+		produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+	)
+	@ApiOperation(
+		value = "Transform a CSV to XLSX",
+		notes = "Transform a CSV to XLSX"
+	)
 	@ResponseBody
-	public ResponseEntity<?> convertCSVToXLSX(@ApiParam(value = "CSV File") @RequestParam("file") MultipartFile file,
-						 @ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename) throws IOException {
-
+	public ResponseEntity<?> convertCSVToXLSX(
+		@ApiParam(value = "CSV File") @RequestParam("file") MultipartFile file,
+		@ApiParam(value = "Expected file name") @RequestParam(value = "filename", required = false) String filename
+	) throws IOException {
 		Map<String, Object> log = new HashMap<String, Object>();
 		log.put(MessageHelper.CONST_METHOD, MessageHelper.METHOD_CONVERTCSVTOXLSX);
 		log.put(MessageHelper.CONST_FILENAME, file.getOriginalFilename());
@@ -272,7 +301,10 @@ public class XLSXController {
 		}
 	}
 
-	private JSONArray extractData(Sheet s, String range, String orientation) throws ServiceException {
+	private JSONArray extractData(
+		Sheet s, String range,
+		String orientation
+	) throws ServiceException {
 		// Check the range syntax
 		Regex regex = new Regex("[A-Z]+\\d+:[A-Z]+\\d+");
 		if (regex.matchEntire(range) == null)

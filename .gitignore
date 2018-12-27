@@ -39,3 +39,4 @@ transaction-logs
 docker-build-local.sh
 *.tar
 src/external
+.vscode
